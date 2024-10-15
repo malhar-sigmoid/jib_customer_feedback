@@ -14,7 +14,7 @@ option = st.sidebar.radio("Choose an option", ["Overall summary", "Choose data s
 
 # Load the data
 try:
-    file_path = '/Review_Feed_Jack_in_the_Box_Oct.xlsx'
+    file_path = 'Review_Feed_Jack_in_the_Box_Oct.xlsx'
     df = pd.read_excel(file_path)
     df['Review'] = df['Review'].astype('str')
     df['Date'] = pd.to_datetime(df['Date'])
