@@ -6,7 +6,7 @@ import pandas as pd
 from datetime import datetime
 
 # Load data
-openai.api_key = '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'
+openai.api_key = st.secrets["openai_api_key"]
 
 # Sidebar for choosing between options
 st.sidebar.title("Customer Feedback Insights")
