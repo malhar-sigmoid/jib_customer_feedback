@@ -206,13 +206,23 @@ elif option == "Choose data slice":
                     {"role": "user", "content": user_prompt}
                 ]
             )
-            st.markdown(reply.choices[0].message.content)
+            
+            # Store the response in session state
+            st.session_state['overall_summary'] = reply.choices[0].message.content
+
+    # Display the stored summary if available
+    if st.session_state['overall_summary']:
+        st.markdown(st.session_state['overall_summary'])
+
 
         # Display a text box for follow-up questions
         custom_question = st.text_input("Ask a follow-up question:")
         if custom_question:
+            combined_feedback_market = "__end__".join(
+                (df_filtered_market['Review']).tolist()
+            )
             custom_prompt = f"Customer feedback question: {custom_question}"
-            custom_system_prompt = get_custom_system_prompt(combined_feedback)
+            custom_system_prompt = get_custom_system_prompt(combined_feedback_market)
             custom_reply = openai.chat.completions.create(
                 model='gpt-4o-mini',
                 messages=[
