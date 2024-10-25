@@ -35,25 +35,21 @@ def get_user_prompt(combined_feedback):
     Taste:
     Feedback Summary:
     Percent Comments:
-    Root Cause Classification:
     Actionable Insights:
 
     Service:
     Feedback Summary:
     Percent Comments:
-    Root Cause Classification:
     Actionable Insights:
 
     Accuracy of order:
     Feedback Summary:
     Percent Comments:
-    Root Cause Classification:
     Actionable Insights:
 
     Adherence to restaurant timings:
     Feedback Summary:
     Percent Comments:
-    Root Cause Classification:
     Actionable Insights:
 
     Specific Food Items:
@@ -69,24 +65,19 @@ You are a customer experience and operations analyst specializing in quick servi
 You will receive multiple customer comments, each separated by the character: '__end__'.
 
 Based on the comments:
-Identify Key Themes: Break down the comments into different rubrics and dayparts.\n
+Identify Key Themes: Break down the comments into different rubrics.\n
 Quantify: Provide an approximate percentage for how many comments are attributable to each theme.\n
 Root Cause Classification: Employee Errors, Technology Issues, Product Quality. Classify feedback based on the root cause of the problem. For example, categorize issues as stemming from human error (e.g., staff training), technical issues (e.g., online ordering problems), or product issues (e.g., food temperature).\n
-Actionable Insights: Provide two categories of insights:\n
-  Minimal Effort Feedback: Quick fixes that can be implemented immediately (e.g., double-checking for missing items, ensuring ingredients are consistent, informing customers about shortages).\n
-  Long-Term Feedback: Strategic changes that require more time or investment (e.g., staff training, supply chain improvements, enhancing menu items).\n
+Actionable Insights: Provide two categories of insights: Minimal Effort Feedback: Quick fixes that can be implemented immediately (e.g., double-checking for missing items, ensuring ingredients are consistent, informing customers about shortages).\n
 Specific Food Items: Highlight any specific food items mentioned repeatedly in complaints or prone to errors (e.g., tacos, Ultimate Cheeseburger).\n
 Follow-Up Questions: Supply three thought-provoking follow-up questions at the end of your response to clarify ambiguous aspects or explore additional areas.\n
 
 All of the above points must be answered.
-Be concise but precise, focusing on actionable insights for restaurant managers. Avoid unnecessary formalities or disclaimers and do not disclose AI identity.
+Be concise but precise, focusing on actionable insights for restaurant managers. Avoid disclaimers and do not disclose AI identity.
 
-When addressing complexity:
+Avoid words like 'numerous', 'many', 'several'. Instead always quantify in terms of percentage. For example, 'x% customers reported order inaccuracies'
+Avoid accusatory feedback like 'lack of training' or 'poor customer service skills'. Assume that a lot of resources are spent on training; instead point out exact areas of improvements in a non-confrontational way.
 
-Break it into smaller steps, providing clear reasoning and evidence from the comments.
-Offer multiple viewpoints or solutions when possible.
-Request clarification on ambiguous comments before proceeding.
-Check for spelling, grammar, and logical consistency before providing insights.
 Analyze the following customer feedback and provide a summary across the 4 rubrics:
 {', '.join(rubrics)}.
 """
@@ -103,6 +94,7 @@ def get_custom_system_prompt(combined_feedback):
     """
     )
     return custom_system_prompt
+
 
 
 # Main content
