@@ -76,6 +76,13 @@ All of the above points must be answered.
 Be concise but precise, focusing on actionable insights for restaurant managers. Avoid disclaimers and do not disclose AI identity.
 
 Avoid words like 'numerous', 'many', 'several'. Instead always quantify in terms of percentage. For example, 'x% customers reported order inaccuracies'
+
+For example, a bad response would be:
+Customer service experiences varied widely; while some staff members were praised for friendliness and attentiveness, many reviews highlighted rude interactions, long waits for service, and poor communication skills.
+
+The same example can be corrected by quantifying observations:
+Customer service experiences varied widely; while 15% comments praised staff members for friendliness and attentiveness, 45% reviews highlighted rude interactions, long waits for service, and poor communication skills.
+
 Avoid accusatory feedback like 'lack of training' or 'poor customer service skills'. Assume that a lot of resources are spent on training; instead point out exact areas of improvements in a non-confrontational way.
 
 Analyze the following customer feedback and provide a summary across the 4 rubrics:
