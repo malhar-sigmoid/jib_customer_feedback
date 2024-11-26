@@ -144,29 +144,29 @@ if option == "Overall summary":
     if st.session_state['overall_summary']:
         st.markdown(st.session_state['overall_summary'])
 
-    # Display a text box for follow-up questions
-    custom_question = st.text_input("Ask a follow-up question:")
-    if custom_question:
-      df_working_truncated = df_working[:2000].copy()
-      combined_feedback = "__end__".join(
-              (df_working_truncated['Review']).tolist()
+        # Display a text box for follow-up questions
+        custom_question = st.text_input("Ask a follow-up question:")
+        if custom_question:
+          df_working_truncated = df_working[:2000].copy()
+          combined_feedback = "__end__".join(
+                  (df_working_truncated['Review']).tolist()
+              )
+
+          custom_prompt = f"Customer feedback question: {custom_question}"
+          custom_system_prompt = get_custom_system_prompt(combined_feedback)
+          custom_reply = openai.chat.completions.create(
+              model='gpt-4o-mini',
+              messages=[
+                  {"role": "system", "content": custom_system_prompt},
+                  {"role": "user", "content": custom_prompt}
+              ]
           )
+          # Store the custom response in session state
+          st.session_state['custom_response'] = custom_reply.choices[0].message.content
 
-      custom_prompt = f"Customer feedback question: {custom_question}"
-      custom_system_prompt = get_custom_system_prompt(combined_feedback)
-      custom_reply = openai.chat.completions.create(
-          model='gpt-4o-mini',
-          messages=[
-              {"role": "system", "content": custom_system_prompt},
-              {"role": "user", "content": custom_prompt}
-          ]
-      )
-      # Store the custom response in session state
-      st.session_state['custom_response'] = custom_reply.choices[0].message.content
-
-    # Display the custom response if available
-    if st.session_state['custom_response']:
-        st.markdown(st.session_state['custom_response'])
+        # Display the custom response if available
+        if st.session_state['custom_response']:
+            st.markdown(st.session_state['custom_response'])
 
 elif option == "Choose data slice":
     st.header("Choose Data Slice")
@@ -205,7 +205,7 @@ elif option == "Choose data slice":
                     {"role": "user", "content": user_prompt}
                 ]
             )
-            
+
             # Store the response in session state
             st.session_state['overall_summary'] = reply.choices[0].message.content
 
@@ -235,6 +235,7 @@ elif option == "Choose data slice":
         # Display the custom response if available
         if st.session_state['custom_response']:
             st.markdown(st.session_state['custom_response'])
+
 
 
 
